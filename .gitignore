@@ -1,0 +1,4 @@
+.idea/
+cmake-build-debug/*
+/sinais/blocking_wait/sender
+/sinais/blocking_wait/receiver
