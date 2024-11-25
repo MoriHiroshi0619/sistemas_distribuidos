@@ -3,3 +3,5 @@ cmake-build-debug/*
 /sinais/*/sender
 /sinais/*/receiver
 CMakeLists.txt
+/pipes/produtor
+/pipes/consumidor
