@@ -7,3 +7,6 @@ CMakeLists.txt
 /pipes_v1/consumer
 /sockets/consumer
 /sockets/producer
+/sockets_it/producer
+/sockets_it/consumer
+

@@ -6,6 +6,7 @@
 #include <arpa/inet.h> // socket, connect, sockaddr_in
 #include <time.h>    // time, srand, rand
 
+//Produtor atua como cliente
 int main(int argc, char *argv[]) {
     if (argc != 4) {
         printf("Uso: %s <endereço IP> <porta> <quantidade de números>\n", argv[0]);
