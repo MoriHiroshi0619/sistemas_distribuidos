@@ -1,80 +1,162 @@
-# Trabalho prático 4 
-Nesse diretorio estão os arquivos do trabalho 4 (prático) realizado pela dupla 
+# Trabalho prático 4 - Sistemas Distribuídos
+Este repositório contém os arquivos do Trabalho Prático 4, desenvolvido pelos alunos:
 
-- **Mori Hiroshi** (rgm: 45380)
-- **Rafael Florenciano** (rgm: 45385).
+- **Mori Hiroshi** (RGM: 45380)
+- **Rafael Florenciano** (RGM: 45385)
 
-Mais especificamente, aqui tem os códigos na linguagem C feito para rodar em UNIX.
+Os códigos foram implementados em **linguagem C** e são compatíveis com sistemas **UNIX**.
+
+# Estrutura do Repositório
 
 ## Sinais
-No caminho `./sinais/` temos os arquivos referentes ao primeiro exercício. <br> 
-Mais especificamente nesse caminho temos 3 subdiretórios diferentes, cada um com um código ligeiramente diferente.
+Os códigos para o exercício de Sinais estão no diretório `./sinais/.` Esse diretório contém 3 subdiretórios com diferentes implementações:
 
-1. `busy_wait`: Nesse diretorio tem a implementação do código que utiliza um loop infinito para simular um processamento pesado.
-<br> para compilar o código basta executar o comando
-```bash
-gcc receiver.c  -o receiver                                                                     
-gcc sender.c -o sender 
-```
-Agora para executar o código basta rodar o comando `./receiver` que será exibido o pid do processo e o programa ficará esperando um sinal. <br>
-Em outro terminal rodar o comando `./sender <PID> <SINAL>` para enviar o sinal.
+### 1.1 - busy_wait
+Implementação que utiliza um loop infinito para aguardar sinais, simulando processamento contínuo.
 
-2. `blocking_wait`: Nesse diretorio tem a implementação do código que utiliza a função `pause()` para esperar o sinal.
-<br> para compilar o código basta executar o comando
-```bash
-gcc receiver.c  -o receiver                                                                     
-gcc sender.c -o sender 
+Compilação:
+```bash 
+gcc receiver.c -o receiver
+gcc sender.c -o sender
 ```
-Agora para executar o código basta rodar o comando `./receiver` que será exibido o pid do processo e o programa ficará esperando um sinal. <br>
-Em outro terminal rodar o comando `./sender <PID> <SINAL>` para enviar o sinal.
+Execução:
+1. Inicie o **receiver**:
+```bash
+./receiver
+```
+O PID será exibido e o programa ficará aguardando sinais.
+2. Em outro terminal, envie sinais com o **sender**:
+```bash
+./sender <PID> <SINAL>
+```
 
-3. `ambos`: Nesse diretorio tem a implementaçãod de ambos acima, sendo passado como argumento qual dos dois códigos será executado.
-<br> para compilar o código basta executar o comando
-```bash
-gcc receiver.c  -o receiver                                                                     
-gcc sender.c -o sender 
+### 1.2 - blocking_wait
+Implementação que utiliza a função `pause()` para aguardar sinais de forma bloqueante.
+
+Compilação:
+```bash 
+gcc receiver.c -o receiver
+gcc sender.c -o sender
 ```
-Agora para executar o código basta rodar o comando `./receiver <blocking_wait/busy_wait>` aonde 1 é para blocking_wait e 2 é para busy_wait, será exibido o pid do processo e o programa ficará esperando um sinal. <br>
-Em outro terminal rodar o comando `./sender <PID> <SINAL>` para enviar o sinal.
+Execução:
+1. Inicie o **receiver**:
+```bash
+./receiver
+```
+O PID será exibido e o programa ficará aguardando sinais.
+2. Em outro terminal, envie sinais com o **sender**:
+```bash
+./sender <PID> <SINAL>
+```
+
+### 1.3 - Ambos
+Implementação que combina as abordagens de blocking_wait e busy_wait, permitindo escolher o comportamento via parâmetro.
+
+Compilação:
+```bash
+gcc receiver.c -o receiver
+gcc sender.c -o sender
+```
+Execução:
+1. Inicie o **receiver**:
+```bash
+./receiver <1 para blocking_wait | 2 para busy_wait>
+```
+O PID será exibido e o programa ficará aguardando sinais.
+2. Em outro terminal, envie sinais com o **sender**:
+```bash
+./sender <PID> <SINAL>
+```
 
 ## Pipes
-No caminho `./pipes_v1/`  e `./pipes_v2` temos os arquivos referentes ao segundo exercício. <br>
 
-1. `v1`: Nesse diretorio tem a implementação do código que utiliza um pipe com o comando `mkfifo` para comunicação entre processos. <br>
-Para testar esse código antes é necessario criar o pipe com o comando `mkfifo pipe` para criar o pipe. <br>
-Agora para compilar o código basta executar o comando
+Os códigos para o exercício de Pipes estão nos diretórios `./pipes_v1/` e `./pipes_v2/`.
+
+### 2.1 - pipes_v1
+Implementação que utiliza pipes nomeados criados com o comando `mkfifo`.
+
+Configuração e Compilação:
+1. Crie o pipe nomeado:
 ```bash
-gcc consumer.c -o consumer                                                                      
+Configuração e Compilação:
+```
+2. Compile os códigos:
+```bash
+gcc consumer.c -o consumer
 gcc producer.c -o producer
 ```
-Feito isso, para executar o código basta rodar o comando `./consumer <pipe>` aonde pipe é o nome do pipe criado anteriormente. <br>
-Em outro terminal rodar o comando `./producer <qtd_numeros> <pipe>` para enviar a mensagem, aonde qtd_numeros é a quantidade de números que serão enviados e pipe é o nome do pipe criado anteriormente.
+Execução:
 
-2. `v2`: Nesse diretorio tem a implementação do código que utiliza um pipe com o comando `pipe` e `fork` para comunicação. <br>
-Para compilar o código basta executar o comando
+1. Inicie o **consumer**:
+```bash
+./consumer <pipe>
+```
+Substitua `<pipe>` pelo nome do pipe criado.
+2. Em outro terminal, inicie o **producer**:
+```bash
+./producer <qtd_numeros> <pipe>
+```
+Substitua `<qtd_numeros>` pela quantidade de números a gerar e `<pipe>` pelo nome do pipe.
+
+### 2.2 - pipes_v2
+
+Implementação que utiliza pipes anônimos criados com `pipe()` e comunicação entre processos com `fork()`.
+
+Compilação:
 ```bash
 gcc produtor-consumidor.c -o produtor-consumidor
 ```
-Para executar o código basta rodar o comando `./produtor-consumidor <qtd_numeros>` e será exibido o resultado.
-
-## Socket
-no caminho `./socket/` e `./sockets_it/` temos os arquivos referentes ao terceiro exercício. <br>
-
-1. `socket`: Nesse diretorio tem a implementação do código que utiliza um socket para comunicação entre cliente e servidor. <br>
-Para compilar o código basta executar o comando
+Execução:
 ```bash
-gcc consumer.c -o consumer                                                                      
+./produtor-consumidor <qtd_numeros>
+```
+Substitua `<qtd_numeros>` pela quantidade de números a gerar.
+
+## Sockets
+
+Os códigos para o exercício de Sockets estão nos diretórios `./socket/` e `./sockets_it/`.
+
+### 3.1 - socket
+Implementação básica de comunicação entre cliente e servidor utilizando sockets TCP.
+
+Compilação:
+```bash
+gcc consumer.c -o consumer
 gcc producer.c -o producer
 ```
-Feito isso, para executar o código basta rodar o comando `./consumer <porta>` aonde porta é a porta que será utilizada. (Recomendo a porta 8080)<br>
-Em outro terminal rodar o comando `./producer <ip> <porta> <qtd_numeros>` para enviar a mensagem, aonde ip é o ip do servidor (127.0.0.1), porta é a porta que será utilizada (8080) e qtd_numeros é a quantidade de números que serão enviados.
-
-2. `sockets_it`: Nesse diretorio tem a implementação do código que utiliza um socket para comunicação entre cliente e servidor, porém de maneira interativa <br>
-para compilar o código basta executar o comando
+Execução:
+1. Inicie o **servidor**:
 ```bash
-gcc consumer.c -o consumer                                                                      
+./consumer <porta>
+```
+Substitua `<porta> pelo número da porta (ex.: 8080).
+2. Em outro terminal, inicie o **cliente**:
+```bash
+Substitua <porta> pelo número da porta (ex.: 8080)
+```
+Substitua `<ip>` pelo endereço IP do servidor (ex.: 127.0.0.1), `<porta>` pela porta utilizada, e `<qtd_numeros>` pela quantidade de números a enviar.
+
+### 3.2 - sockets_it
+Versão interativa da implementação de Sockets, permitindo que o cliente insira números manualmente.
+
+Compilação:
+```bash
+gcc consumer.c -o consumer
 gcc producer.c -o producer
 ```
-Aqui, para executar o código basta rodar o comando `./consumer <porta>` aonde porta é a porta que será utilizada. (Recomendo a porta 8080)<br>
-Já no em outro terminal rodar o comando `./producer <ip> <porta>` para enviar a mensagem, aonde ip é o ip do servidor (127.0.0.1) e porta é a porta que será utilizada (8080).
-Note que nesse código podemos passar a mensagem que será enviada pelo cliente.
+Execução:
+1. Inicie o **servidor**:
+```bash
+./consumer <porta>
+```
+Substitua `<porta>` pelo número da porta (ex.: 8080).
+2. Em outro terminal, inicie o **cliente**:
+```bash
+./producer <ip> <porta>
+```
+Substitua `<ip>` pelo endereço IP do servidor (ex.: 127.0.0.1) e `<porta>` pela porta utilizada.
+3. Digite os números no terminal do cliente. Para encerrar, envie 0.
+
+## Notas Adicionais
+- Todos os códigos desse Repository foram testados em um ambiente UNIX (Macintosh).
+- Para compilar e executar os códigos, é necessário ter um compilador C instalado (ex.: GCC).
