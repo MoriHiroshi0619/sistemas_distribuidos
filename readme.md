@@ -25,6 +25,7 @@ Execução:
 ./receiver
 ```
 O PID será exibido e o programa ficará aguardando sinais.
+
 2. Em outro terminal, envie sinais com o **sender**:
 ```bash
 ./sender <PID> <SINAL>
@@ -44,6 +45,7 @@ Execução:
 ./receiver
 ```
 O PID será exibido e o programa ficará aguardando sinais.
+
 2. Em outro terminal, envie sinais com o **sender**:
 ```bash
 ./sender <PID> <SINAL>
@@ -63,6 +65,7 @@ Execução:
 ./receiver <1 para blocking_wait | 2 para busy_wait>
 ```
 O PID será exibido e o programa ficará aguardando sinais.
+
 2. Em outro terminal, envie sinais com o **sender**:
 ```bash
 ./sender <PID> <SINAL>
@@ -92,6 +95,7 @@ Execução:
 ./consumer <pipe>
 ```
 Substitua `<pipe>` pelo nome do pipe criado.
+
 2. Em outro terminal, inicie o **producer**:
 ```bash
 ./producer <qtd_numeros> <pipe>
@@ -130,6 +134,7 @@ Execução:
 ./consumer <porta>
 ```
 Substitua `<porta> pelo número da porta (ex.: 8080).
+
 2. Em outro terminal, inicie o **cliente**:
 ```bash
 Substitua <porta> pelo número da porta (ex.: 8080)
@@ -150,11 +155,13 @@ Execução:
 ./consumer <porta>
 ```
 Substitua `<porta>` pelo número da porta (ex.: 8080).
+
 2. Em outro terminal, inicie o **cliente**:
 ```bash
 ./producer <ip> <porta>
 ```
 Substitua `<ip>` pelo endereço IP do servidor (ex.: 127.0.0.1) e `<porta>` pela porta utilizada.
+
 3. Digite os números no terminal do cliente. Para encerrar, envie 0.
 
 ## Notas Adicionais
