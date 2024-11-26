@@ -5,6 +5,7 @@ cmake-build-debug/*
 CMakeLists.txt
 /pipes_v1/producer
 /pipes_v1/consumer
+/pipes_v2/produtor-consumidor
 /sockets/consumer
 /sockets/producer
 /sockets_it/producer

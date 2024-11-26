@@ -15,4 +15,5 @@ add_executable(trabalho_pratico sinais/blocking_wait/receiver.c
         sockets/producer.c
         sockets_it/producer.c
         sockets_it/consumer.c
+        pipes_v2/produtor-consumidor.c
 )
